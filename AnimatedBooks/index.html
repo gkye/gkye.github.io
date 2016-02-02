@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Finder</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/demo.css" />
+<link rel="stylesheet" type="text/css" href="css/component.css" />
+<link rel="stylesheet" type="text/css" href="css/book.css" />
+
+<script src="js/modernizr.custom.js"></script>
+<script src="js/valClickFunctions.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/main.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+</head>
+<body>
+<div class="container"> 
+		<!-- Top Navigation -->
+		<div class="codrops-top clearfix">
+<span class="right"><a class=""><span id="location">
+
+Current Location: </span></a></span>
+			</div>
+			
+<script>
+$(document).ready(function(){
+  $(".nav-btn").click(function(e) {
+	 e.preventDefault();
+	 $("a").removeClass("current-demo");
+	 $(this).addClass("current-demo");
+	r_search();
+		
+ });
+ 
+ $(".menu__item").click(function(e) {
+	e.preventDefault();
+	r_search();
+   
+});
+ 
+//ready ends	
+});
+
+
+			</script>		
+				
+				<header>
+				<h1><span style="color: white; font-size:2.8em; padding-left: 0em; padding-top:1em;">Book Finder</span></h1>
+	
+				<nav style=" padding-top:0em;"   class="codrops-demos"> 
+				<a id="topfreeebooks" class="nav-btn current-demo" href="#">Top Free Books</a>
+				 <a id="toppaidebooks" class="nav-btn" href="#">Top Paid Books</a>
+				 <a id="toptextbooks" class="nav-btn" href="#">Top Textbooks</a>
+				  </nav>
+				  <!--Sub Nav starts !-->
+				  <section class="section section--menu center" id="Valentine">
+				<span class="link-copy"></span>
+				<nav style=" padding-bottom:0.5em;" class="menu menu--valentine">
+				<ul class="menu__list">
+				<li class="menu__item menu__item--current" id="0">
+				<a href="#" class="menu__link">All</a>
+				</li>
+				<li class="menu__item" id="9007">
+				<a  href="#" class="menu__link">Arts & Entertainment</a>
+				</li>
+				<li class="menu__item" id="9008">
+				<a href="#" class="menu__link">Biographies & Memoirs</a>
+				</li>
+				<li class="menu__item" id="9009">
+				<a  href="#" class="menu__link">Business & Personal Finance</a>
+				</li>
+				<li class="menu__item" id="9010">
+				<a  href="#" class="menu__link">Children & Teens</a>
+				</li>
+				<li class="menu__item" id="9026">
+				<a  href="#" class="menu__link">Comics & Graphic Novels</a>
+				</li>
+				<li class="menu__item" id="9027" >
+				<a href="#" class="menu__link">Computers & Internet</a>
+				</li>
+				<li class="menu__item" id="9028">
+				<a  href="#" class="menu__link">Cookbooks, Food & Wine</a>
+				</li>
+				<li class="menu__item" id="9031">
+				<a  href="#" class="menu__link">Fiction & Literature</a>
+				</li>
+				<li class="menu__item" id="9025">
+				<a href="#" class="menu__link">Health, Mind & Body</a>
+				</li>
+				<li class="menu__item" id="9015">
+				<a href="#" class="menu__link">History</a>
+				</li>
+				<li class="menu__item" id="9012">
+				<a  href="#" class="menu__link">Humor</a>
+				</li>
+				<li class="menu__item" id="9024">
+				<a href="#" class="menu__link">Lifestyle & Home</a>
+				</li>
+				<li class="menu__item" id="9032">
+				<a  href="#" class="menu__link">Mysteries & Thrillers</a>
+				</li>
+				<li class="menu__item" id="9002">
+				<a  href="#" class="menu__link">Nonfiction</a>
+				</li>
+				<li class="menu__item" id="9030">
+				<a  href="#" class="menu__link">Parenting</a>
+				</li>
+				<li class="menu__item" id="9034">
+				<a  href="#" class="menu__link">Politics & Current Events</a>
+				</li>
+				<li class="menu__item" id="9029" >
+				<a href="#" class="menu__link">Professional & Technical</a>
+				</li>
+				<li class="menu__item" id="9033">
+				<a  href="#" class="menu__link">Reference</a>
+				</li>
+				<li class="menu__item" id="9018">
+				<a  href="#" class="menu__link">Religion & Spirituality</a>
+				</li>
+				<li class="menu__item" id="9003">
+				<a  href="#" class="menu__link">Romance</a>
+				</li>
+				<li class="menu__item" id="9020">
+				<a  href="#" class="menu__link">Sci-Fi & Fantasy</a>
+				</li>
+				<li class="menu__item" id="9019">
+				<a href="#" class="menu__link">Science & Nature</a>
+				</li>
+				<li class="menu__item" id="9035">
+				<a href="#" class="menu__link">Sports & Outdoors</a>
+				</li>
+				<li class="menu__item" id="9004">
+				<a href="#" class="menu__link">Travel & Adventure</a>
+				</li>
+					</ul>
+				</nav>
+			</section>
+		<script src="js/classie.js"></script>
+		<script src="js/clipboard.min.js"></script>
+
+		<!-- /container -->
+		
+		<script src="js/valClickFunctions.js">
+	
+		</script>
+</header>
+
+
+		<div class="component">
+		<div class="spinner">
+		<div class="rect1"></div>
+		<div class="rect2"></div>
+		<div class="rect3"></div>
+		<div class="rect4"></div>
+		<div class="rect5"></div>
+		</div>
+				<ul id="Maincontainer" class="align">
+						<script type="text/template" id="template">
+  				 <li id="bookHolder" class="bookHolder">
+						<figure class="book">
+						<!-- Front -->
+							<ul class="hardcover_front">
+								<li>
+									<img src="{{imgURL}}" alt="" width="100%" height="100%">
+								</li>
+								<li></li>
+							</ul>
+						<!-- Pages -->
+							<ul class="page">
+								<li></li>
+								<li>
+									<a class="btn" href="{{href}}">Download</a>
+								</li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						<!-- Back -->
+							<ul class="hardcover_back">
+								<li></li>
+								<li></li>
+							</ul>
+							<ul class="book_spine">
+								<li></li>
+								<li></li>
+							</ul>
+							<figcaption>
+								<h1>{{bookName}}</h1>
+								<span>{{seller}}</span>
+								<p>{{summary}}</p>
+								<span>{{category}} - {{price}}</span>
+							</figcaption>
+						</figure>
+					</li>
+			</script>
+				</ul>
+		</div>
+		</div>
+<!-- /container -->
+</body>
+</html>
