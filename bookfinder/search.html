@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Finder</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/demo.css" />
+<link rel="stylesheet" type="text/css" href="css/component.css" />
+<link rel="stylesheet" type="text/css" href="css/book.css" />
+
+<script src="js/modernizr.custom.js"></script>
+<script src="js/valClickFunctions.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/bookSearch.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+</head>
+<body>
+<div class="container"> 
+		<!-- Top Navigation -->
+		<div class="codrops-top clearfix">
+<span class="right"><a class=""><span id="location">
+
+Current Location: </span></a></span>
+			</div>
+			
+<script>
+$(document).ready(function(){
+ $("#searchbox").keyup(function(e) {
+	 var searchTerm = $(this).val();
+	console.log(searchTerm);
+	searchItunes(searchTerm);
+});
+
+
+
+//ready ends	
+});
+
+
+			</script>		
+				
+				<header>
+				
+				<h1><span style="color: white; font-size:2.8em; padding-left: 0em; padding-top:1em;">Book Finder</span></h1>
+				<nav  class="codrops-demos"> 
+			<a id="back" class="nav-btn1 fa fa-arrow-left" href="./test.html"></a>	 
+	<input placeholder="Romeo and Juliet" id="searchbox" name="q" type="text" value="" style="height: 40px; width: 40%;">
+		<a id="search" class="nav-btn1 fa fa-search" href="./test.html"></a>	 
+
+				
+				  </nav>
+				  				
+				  <!--Sub Nav starts !-->
+				
+		<script src="js/clipboard.min.js"></script>
+
+		<!-- /container -->
+		
+		<script src="js/valClickFunctions.js">
+		</script>
+		
+</header>
+		<div class="component">
+		<div class="spinner">
+		<div class="rect1"></div>
+		<div class="rect2"></div>
+		<div class="rect3"></div>
+		<div class="rect4"></div>
+		<div class="rect5"></div>
+		</div>
+				<ul id="Maincontainer" class="align">
+						<script type="text/template" id="template">
+  				 <li id="bookHolder" class="bookHolder">
+						<figure class="book">
+						<!-- Front -->
+							<ul class="hardcover_front">
+								<li>
+									<img src="{{imgURL}}" alt="" width="100%" height="100%">
+								</li>
+								<li></li>
+							</ul>
+						<!-- Pages -->
+							<ul class="page">
+								<li></li>
+								<li>
+									<a class="btn" href="{{href}}">Download</a>
+								</li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						<!-- Back -->
+							<ul class="hardcover_back">
+								<li></li>
+								<li></li>
+							</ul>
+							<ul class="book_spine">
+								<li></li>
+								<li></li>
+							</ul>
+							<figcaption>
+								<h1>{{bookName}}</h1>
+								<span>{{seller}}</span>
+								<p>{{summary}}</p>
+								<span>{{category}} - {{price}}</span>
+							</figcaption>
+						</figure>
+					</li>
+			</script>
+				</ul>
+		</div>
+		</div>
+<!-- /container -->
+</body>
+</html>

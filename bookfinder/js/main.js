@@ -51,6 +51,10 @@ $("#Maincontainer").append(template.replace("{{bookName}}", bookName).replace("{
 $('.spinner').hide();
 }
 function r_search(){
+	var isMobile = window.matchMedia("only screen and (max-width: 760px)");
+    if (!isMobile.matches) {
+       $("body").scrollTop(150);
+    }
 $('.spinner').show();
 getCountryCode(function(cCode){
 runRSS(cCode);
