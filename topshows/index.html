@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,  width=device-width">
+
+  <title>SHOW FINDER</title>
+	<link  rel="stylesheet" type="text/css"  href="css/main.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="js/js.cookie.js"></script>
+</head>
+
+
+<script>
+function getPageCookie(){
+if(Cookies.get('pageIndex') == null){
+Cookies.set('pageIndex', 1, { expires: 3, path: '/' });
+console.log('newCookie');
+return 1;
+}else{
+return Cookies.get('pageIndex'); 
+	}	
+}
+
+function saveRemovedObjects(obj_title){
+var removedObjects = $(".removedObjs").html().toString();
+Cookies.set('removedObjs', removedObjects, { expires: 3, path: '/' }); //savedivobjects to enable prev when browser closes
+
+var previousTitles = Cookies.get('obj_titles');
+previousTitles += "," + obj_title;
+Cookies.set('obj_titles', previousTitles, { expires: 3, path: '/' });
+}
+
+function getRemovedObjects(){
+$(".removedObjs").prepend(Cookies.get('removedObjs'));
+}
+
+//DOC READY STARTS
+$(document).ready(function(e) {
+getRemovedObjects();
+var page = getPageCookie();
+var previousCard;
+runAPISearch(page); //Make httpRquest to movieDBAPi
+
+$('.container').on('click', '.card', function(){
+var id = $(this).attr('id');
+removeObject();	
+}); //click event ends;
+
+$("#next").click(function(e) {
+	removeObject();
+});
+
+$("#prev").click(function(e) {
+	var previousCard  = $(".removedObjs").children().first();
+	console.log(previousCard);	
+	$(".container").prepend(previousCard);
+	//remove from removeobjs container?
+	//saveRemovedObjects(); //********
+});
+
+function removeObject(){
+var obj_Title_ToBeSaved = $(".container").children(".card:first-child").attr('name');
+console.log(obj_Title_ToBeSaved);
+saveRemovedObjects(obj_Title_ToBeSaved);
+$(".removedObjs").prepend($(".container").children(".card:first-child").detach()); //**ADD FADE?
+reloadPage();
+}
+
+function reloadPage(){
+if($(".container > .card").length == 1){
+console.log('RELOADING DATA');
+$('.container.card').remove();
+page++
+Cookies.set('pageIndex', page, { expires: 3, path: '/' });
+alert("new page is" + page);
+runAPISearch(page);
+}else{
+return;
+	}	
+} 
+
+//Reload page and increment index to refresh content received from api;
+  function runAPISearch(page) {	
+var url ="http://api.themoviedb.org/3/discover/tv?page="+page+"&vote_count.gte=7.0&sort_by=popularity.desc&api_key=8a7a49369d1af6a70ec5a6787bbfcf79";
+  $.ajax({
+    url: url, 
+	dataType: 'jsonp',  
+    success:function(data) {
+	 parseData(data.results); 
+    }
+  });
+}//httpRequest ends; **api_key=8a7a49369d1af6a70ec5a6787bbfcf79 https://www.themoviedb.org/documentation/api
+
+function previousId(){
+var prevId = $(".removedObjs").children().length;
+return prevId;
+}
+
+//Parse data received from themoveDB api request
+function parseData(data){	
+var prevId = previousId();
+var i=0;
+var name = "";
+var popularity = "";
+var overview = "";
+var poster_path = "";
+//check if removed objects retrived by cookies contains same id as object being appended from current api data on load**
+//Start at same index as user left off.
+var previousTitles = Cookies.get('obj_titles');
+if(previousTitles != null){
+var previousTitles_arr = previousTitles.split(",");
+}else{
+previousTitles_arr = [];
+}
+console.log(previousTitles_arr);
+for (i = 0; i < data.length; i++){
+	name = data[i].name;
+	popularity = data [i].popularity;	
+	overview = data[i].overview;
+	poster_path = "http://image.tmdb.org/t/p/w300/" + data[i].poster_path;
+	//Check current id with ids of old objects
+	var currentId = prevId++;
+if (previousTitles_arr.indexOf(name) > -1) {
+    console.log(name);
+	} else {
+   var template = $("#template").html();
+	var prependTemplate = template.replace("{{cardId}}", currentId).replace("{{imgSrc}}", poster_path).replace("{{name}}", name);
+	$(".container").append(prependTemplate);
+	}
+}
+}//ParseData ends
+
+});//doc read ends
+
+
+
+
+</script>
+<body>
+
+<div class="title"></div>
+
+
+<script type="text/template" id="template">
+<div name="{{name}}" id="{{cardId}}" class="card">
+<img  src="{{imgSrc}}"> 
+</div>
+</script>
+<section class="removedObjs" hidden="true">
+</section><span>
+<button id="prev" style="float:left"> Prevous	</button>
+<button id="next" style="float:right;" > Next	</button>
+<div class="container">
+
+</div>
+</span>
+
+</body>
+</html>
